@@ -46,5 +46,4 @@ public class UsersController {
         return this.userService.login(request);
     }
 
-
 }

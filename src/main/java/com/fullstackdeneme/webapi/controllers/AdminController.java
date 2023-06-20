@@ -3,10 +3,7 @@ package com.fullstackdeneme.webapi.controllers;
 import com.fullstackdeneme.business.abstracts.IUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
@@ -19,6 +16,11 @@ public class AdminController {
     @GetMapping("/getAllUsers")
     public ResponseEntity<?> getAllUsers(){
         return this.userService.getAllUsers();
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteUserById(@PathVariable Long id){
+        return this.userService.deleteUserById(id);
     }
 
 }

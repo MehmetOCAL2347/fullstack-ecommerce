@@ -27,6 +27,7 @@ public class SecurityConfig {
                 .requestMatchers("/error", "/api/user/**").permitAll()
                 //These can be reachable for just admin role. In here, ADMIN means: ADMIN or ROLE_ADMIN;
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                //.requestMatchers("/api/admin/**").permitAll()
                 //All remaining paths should need authentication.
                 .anyRequest().fullyAuthenticated()
                 .and()

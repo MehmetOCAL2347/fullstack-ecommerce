@@ -10,10 +10,11 @@ public interface IUserService{
 
     ResponseEntity<?> save(CreateNewUserRequest createNewUserRequest);
     ResponseEntity<?> changeUserRole(Role newRole, String userName);
-    UserInfoResponse getUserById(Long userName);
+    UserInfoResponse getUserById(Long id);
     UserInfoResponse getUserByUserName(String userName);
     ResponseEntity<?> getAllUsers();
     ResponseEntity<?> login(HttpServletRequest request);
+    ResponseEntity<?> deleteUserById(Long id);
 
     /*
     saveuser

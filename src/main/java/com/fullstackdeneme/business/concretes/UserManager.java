@@ -54,9 +54,9 @@ public class UserManager implements IUserService {
         }
 
         Optional<User> user = this.userRepository.findByuserName(principal.getName());
+        UserInfoResponse userInfoResponse = this.modelMapperService.forResponses().map(user, UserInfoResponse.class);
 
-        // !! User Info Response dönmelii
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        return new ResponseEntity<>(userInfoResponse, HttpStatus.OK);
     }
 
     @Override
@@ -96,5 +96,15 @@ public class UserManager implements IUserService {
         }
 
         return ResponseEntity.ok(allUsersResponse);
+    }
+
+    @Override
+    public ResponseEntity<?> deleteUserById(Long id) {
+
+        //Business rules, eğer id bulunamamışsa hata fırlatılabilir
+        User user = this.userRepository.findById(id).orElseThrow(() -> new RuntimeException("deleteUserById"));
+        this.userRepository.delete(user);
+        UserInfoResponse userInfoResponse = this.modelMapperService.forResponses().map(user, UserInfoResponse.class);
+        return ResponseEntity.ok(userInfoResponse);
     }
 }
